@@ -7,22 +7,32 @@
 
     <script>
 
+        let cmove = "", pmove = "";
+
         function getComputerChoice() {
-            let cmove = Math.floor(Math.random() * 3);
-            if (cmove == 0) {
+            let cgen = Math.floor(Math.random() * 3);
+            if (cgen == 0) {
                 return "rock";
-            } else if (cmove == 1) {
+            } else if (cgen == 1) {
                 return "paper";
-            } else if (cmove == 2) {
+            } else if (cgen == 2) {
                 return "scissors";
             }
         };
 
-        function getPlayerChoice() {};
+        function getPlayerChoice() {
+            let pgen = prompt("Choose Your Move");
+            pgen = pgen.toLowerCase();
+            return pgen;
+        };
+
+        cmove = getComputerChoice();
+        pmove = getPlayerChoice();
 
         function compMove(cmove, pmove) {};
 
-        console.log(getComputerChoice());
+        console.log(cmove);
+        console.log(pmove);
 
     </script>
 
