@@ -7,7 +7,7 @@
 
     <script>
 
-        let cmove = "", pmove = "";
+        let computerSelection = "", playerSelection = "";
 
         function getComputerChoice() {
             let cgen = Math.floor(Math.random() * 3);
@@ -38,28 +38,28 @@
             }
         };
 
-        function playRound(cmove, pmove) {
+        function playRound(computerSelection, playerSelection) {
 
             let playerScore = 3;
 
-            if (cmove == pmove){
+            if (computerSelection == playerSelection){
                 playerScore = 2;
-            } else if (cmove == "rock") {
-                if (pmove == "scissors"){
+            } else if (computerSelection == "rock") {
+                if (playerSelection == "scissors"){
                     playerScore = 0;
-                } else if (pmove == "paper"){
+                } else if (playerSelection == "paper"){
                     playerScore = 1;
                 }
-            } else if (cmove == "paper"){
-                if (pmove == "rock"){
+            } else if (computerSelection == "paper"){
+                if (playerSelection == "rock"){
                     playerScore = 0;
-                } else if (pmove == "scissors"){
+                } else if (playerSelection == "scissors"){
                     playerScore = 1;
                 }
-            } else if (cmove == "scissors") {
-                if (pmove == "paper") {
+            } else if (computerSelection == "scissors") {
+                if (playerSelection == "paper") {
                     playerScore = 0;
-                } else if (pmove == "rock") {
+                } else if (playerSelection == "rock") {
                     playerScore = 1;
                 }
             }
@@ -68,13 +68,26 @@
 
         };
 
-        cmove = getComputerChoice();
-        pmove = getPlayerChoice();
+        function playGame(roundCount){
+            let wins = 0, losses = 0, draws = 0;
+            for (let i = 0; i < roundCount; i++){
+                computerSelection = getComputerChoice();
+                playerSelection = getPlayerChoice();
+                let roundTally = playRound(computerSelection, playerSelection);
+                console.log(roundTally);
+                if (roundTally == "loss") {
+                    losses++;
+                } else if (roundTally == "win"){
+                    wins++;
+                } else if (roundTally == "draw") {
+                    draws++;
+                }
+            }
+            console.log(wins + " win(s), " + draws + " draw(s) and " + losses + " loss(es).");
+        }
 
-        console.log("computer:" + cmove);
-        console.log("player:" + pmove);
-
-        console.log(playRound(cmove, pmove));
+        console.log("game test");
+        playGame(3);
 
 
     </script>
